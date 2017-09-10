@@ -110,18 +110,18 @@ describe('MasterCard', function() {
   //   http://chaijs.com/api/bdd/
   var expect = chai.expect;
  
-  it(FILL_ME_IN, function() {
+  it('has a prefix of 51 and a length of 16', function() {
     expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
   });
  
-  it(FILL_ME_IN, function() {
+  it('has a prefix of 52 and a length of 16', function() {
     expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
   });
  
-  it(FILL_ME_IN, function() {
+  it('has a prefix of 53 and a length of 16', function() {
     expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
   });
- 
+
 
   // You can also use should instead of expect, which changes the style
   // slightly. It really doesn't matter which one you use - check out 
@@ -146,12 +146,18 @@ describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
   var expect = chai.expect;
-  it('has a prefix of 6011 and a length of 16', function() {
-    expect(detectNetwork('6011123456789012')).to.equal('Discover');
+  var prefixes = ['6011','644','645','646','647','648','649','65'];
+  var lengths = ['16','19'];
+  var theRest = '0123456789012345678901234567890';
+  for (i = 0; i < prefixes.length; i++) {
+    var prefix = prefixes[i];
+    for (j = 0; j < lengths.length; j++) {
+      var num = prefix + theRest.substring(0,lengths[j]-prefix.length)
+      it('has a prefix of ' + prefix + ' and a length of ' + lengths[j], function() {
+    expect(detectNetwork(num)).to.equal('Discover');
   });
-  it('has a prefix of 6011 and a length of 19', function() {
-    expect(detectNetwork('6011123456789012345')).to.equal('Discover');
-  });
+    }
+  }
 });
 
 describe('Maestro', function() {

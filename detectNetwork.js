@@ -29,11 +29,11 @@ var detectNetwork = function(cardNumber) {
   if (cardNumber.length === 16 && firstTwo >= 51 && firstTwo <= 55) {
   	return 'MasterCard';
   }
-  if ( (cardNumber.length === 16 || cardNumber.length === 19) && cardNumber.startsWith('6011')) {
+  if ( (cardNumber.length === 16 || cardNumber.length === 19) &&
+  	(cardNumber.startsWith('6011') || cardNumber.startsWith('65') || ( cardNumber.substring(0,3) >= 644 && cardNumber.substring(0,3) <= 649 ))) {
   	return 'Discover';
   }
   var firstFour = cardNumber.substring(0,4);
-  console.log(cardNumber.length)
   if (cardNumber.length >= 12 && cardNumber.length <= 19) {
     if (firstFour === '5018' || firstFour === '5020' || firstFour === '5038' || firstFour === '6304') {
     	return 'Maestro'
