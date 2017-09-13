@@ -39,4 +39,26 @@ var detectNetwork = function(cardNumber) {
     	return 'Maestro'
     }
   }
+
+if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
+    var switchPrefixes = [4903, 4905, 4911, 4936, 564182, 633110, 633, 6759];
+    for (var a = 0; a < switchPrefixes.length; a++) {
+      if (cardNumber.startsWith(switchPrefixes[a].toString())) {
+          return 'Switch';
+      }
+    }
+  }
+  if (cardNumber.length >= 16 && cardNumber.length <= 18) {
+    var china = ['624', '625', '626', '6282', '6288'];
+    for (num = 0; num < china.length; num++) {
+      if (cardNumber.startsWith(china[num])) {
+          return 'China UnionPay';
+      }
+    }
+    for (var i = 622126; i <= 622925; i++) {
+      if (cardNumber.startsWith(i.toString())) {
+        return 'China UnionPay';
+      }
+    }
+  }
 };
