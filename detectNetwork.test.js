@@ -176,7 +176,7 @@ describe('Maestro', function() {
   };
 });
 
-escribe('Switch', function() {
+describe('Switch', function() {
   var expect = chai.expect;
   var theRest = '012345678901234567890123456789';
   var prefixes = [4903, 4905, 4911, 4936, 564182, 633110, 633, 6759];
